@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3: Responsive Sidebar Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+            padding: 20px;
+            min-height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar h2 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-item {
+            padding: 12px;
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-item:hover {
+            background: #efefef;
+            padding-left: 16px;
+        }
+
+        .sidebar-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .main-content {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .main-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .content-card {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #764ba2;
+            border-radius: 4px;
+        }
+
+        .content-card h3 {
+            color: #764ba2;
+            margin-bottom: 8px;
+        }
+
+        .breakpoint-indicator {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Mobile: Sidebar moves to top, stack vertically */
+        @media (max-width: 767px) {
+            .container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+
+            .sidebar h2 {
+                font-size: 1.1rem;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .main-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .breakpoint-indicator::before {
+                content: "📱 MOBILE VIEW (Sidebar on Top)";
+            }
+        }
+
+        /* Tablet: Sidebar on left, partial width */
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .sidebar {
+                min-width: 200px;
+            }
+
+            .breakpoint-indicator::before {
+                content: "📱 TABLET VIEW (Sidebar on Left)";
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Desktop: Sidebar on left with full layout */
+        @media (min-width: 1200px) {
+            .sidebar {
+                min-width: 250px;
+            }
+
+            .breakpoint-indicator::before {
+                content: "🖥️ DESKTOP VIEW (Sidebar on Left)";
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .main-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Responsive Sidebar Layout</h1>
+        <p>Resize your browser to see the sidebar move from left to top on smaller screens</p>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Navigation</h2>
+            <div class="sidebar-item"><a href="#home">🏠 Home</a></div>
+            <div class="sidebar-item"><a href="#about">👤 About</a></div>
+            <div class="sidebar-item"><a href="#services">🛠️ Services</a></div>
+            <div class="sidebar-item"><a href="#portfolio">📂 Portfolio</a></div>
+            <div class="sidebar-item"><a href="#blog">📝 Blog</a></div>
+            <div class="sidebar-item"><a href="#contact">📧 Contact</a></div>
+        </aside>
+
+        <main class="main-content">
+            <div class="breakpoint-indicator"></div>
+            
+            <h2>Welcome to Our Layout</h2>
+            <p>This is a responsive sidebar layout that adapts to different screen sizes. On mobile devices (below 768px), the sidebar moves to the top. On tablets and larger screens, the sidebar stays on the left side.</p>
+
+            <div class="content-card">
+                <h3>Responsive Design Benefits</h3>
+                <p>Responsive layouts ensure that your website looks great on all devices. This layout uses flexbox to create a flexible structure that adapts to different screen sizes.</p>
+            </div>
+
+            <div class="content-card">
+                <h3>Mobile First Approach</h3>
+                <p>By designing mobile-first, we ensure a solid foundation for smaller screens and then enhance the layout for larger screens. This approach improves performance and user experience.</p>
+            </div>
+
+            <div class="content-card">
+                <h3>Media Queries in Action</h3>
+                <p>The CSS media queries control when the layout changes. Notice how the sidebar repositions itself based on the viewport width. This is achieved through the flex-direction property in media queries.</p>
+            </div>
+
+            <div class="content-card">
+                <h3>Testing Tips</h3>
+                <p>
+                    <strong>Mobile:</strong> Make the browser window narrow (below 768px) to see the sidebar on top.<br>
+                    <strong>Tablet:</strong> Medium width (768px - 1199px) shows sidebar on the left.<br>
+                    <strong>Desktop:</strong> Full screen (1200px and above) shows the complete desktop layout.
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
