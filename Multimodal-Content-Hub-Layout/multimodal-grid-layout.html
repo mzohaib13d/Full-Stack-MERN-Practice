@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodal Grid Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            border: 3px solid #333;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: auto auto auto auto auto;
+            gap: 15px;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+               .header {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .header span {
+            font-size: 14px;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        .header::before {
+            content: "🌐";
+            font-size: 32px;
+        }
+
+      
+        .sidebar {
+            grid-column: 1;
+            grid-row: 2 / 4;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+        }
+
+        .sidebar::before {
+            content: "👥";
+            font-size: 40px;
+        }
+
+      
+        .featured {
+            grid-column: 2 / 5;
+            grid-row: 2 / 4;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            border: 2px dashed rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .featured::before {
+            content: "🎬";
+            font-size: 40px;
+        }
+
+        .featured span {
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        /* Trending - 1 col, 2 rows */
+        .trending {
+            grid-column: 5;
+            grid-row: 2 / 4;
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+        }
+
+        .trending::before {
+            content: "🎣";
+            font-size: 40px;
+        }
+
+        .trending span {
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .card-a {
+            grid-column: 1;
+            grid-row: 4;
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+            border: 2px solid #6c3483;
+            font-weight: bold;
+        }
+
+        .card-a::before {
+            content: "≡";
+            font-size: 28px;
+        }
+
+        .secondary-focus {
+            grid-column: 2 / 4;
+            grid-row: 4;
+            background: #bdc3c7;
+            padding: 15px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            border: 2px solid #95a5a6;
+        }
+
+        .secondary-focus-title {
+            grid-column: 1 / -1;
+            background: #95a5a6;
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .secondary-focus-title::before {
+            content: "⊞";
+        }
+
+        .nested-item {
+            background: #a9a9a9;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 11px;
+            border-radius: 4px;
+            border: 1px solid #888;
+        }
+
+        .card-b {
+            grid-column: 4;
+            grid-row: 4;
+            background: linear-gradient(135deg, #663399 0%, #8b4789 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+            border: 2px solid #4a235a;
+            font-weight: bold;
+        }
+
+        .card-b::before {
+            content: "👥";
+            font-size: 28px;
+        }
+
+        .card-c {
+            grid-column: 5;
+            grid-row: 4;
+            background: linear-gradient(135deg, #6b4c9a 0%, #8b5fbf 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+            border: 2px solid #4a235a;
+            font-weight: bold;
+        }
+
+        .card-c::before {
+            content: "📦";
+            font-size: 28px;
+        }
+
+        .footer {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .footer span {
+            font-size: 12px;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-wrapper {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .header {
+                grid-column: 1 / -1;
+            }
+
+            .sidebar {
+                grid-column: 1;
+                grid-row: 2 / 4;
+            }
+
+            .featured {
+                grid-column: 2 / 4;
+                grid-row: 2 / 4;
+            }
+
+            .trending {
+                grid-column: 1 / -1;
+                grid-row: 4;
+            }
+
+            .card-a {
+                grid-column: 1;
+                grid-row: 5;
+            }
+
+            .secondary-focus {
+                grid-column: 2;
+                grid-row: 5;
+            }
+
+            .card-b {
+                grid-column: 3;
+                grid-row: 5;
+            }
+
+            .card-c {
+                grid-column: 1 / -1;
+                grid-row: 6;
+            }
+
+            .footer {
+                grid-column: 1 / -1;
+                grid-row: 7;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .grid-wrapper {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 10px;
+            }
+
+            .header,
+            .sidebar,
+            .featured,
+            .trending,
+            .card-a,
+            .secondary-focus,
+            .card-b,
+            .card-c,
+            .footer {
+                grid-column: 1 !important;
+            }
+
+            .header {
+                padding: 20px;
+                font-size: 20px;
+            }
+
+            .featured span,
+            .trending span {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="grid-wrapper">
+            <div class="header">
+                PRIMARY HEADER & GLOBAL NAV
+                <span>Span: 5 Cols</span>
+            </div>
+
+            <div class="sidebar">
+                <div>SIDEBAR</div>
+                <div style="font-size: 12px;">USER DASHBOARD & CONTROLS</div>
+                <div style="font-size: 10px;">Span: 2 Rows</div>
+            </div>
+
+            <div class="featured">
+                FEATURED MULTIMEDIA SPOTLIGHT
+                <span>Span: 3 Cols × 2 Rows</span>
+            </div>
+
+            <div class="trending">
+                TRENDING
+                <div style="font-size: 12px;">ARTICLES & TAGS</div>
+                <span>Span: 2 Rows</span>
+            </div>
+
+            <div class="card-a">
+                <div>CARD A:</div>
+                <div style="font-size: 12px;">QUICK LINKS</div>
+            </div>
+
+            <div class="secondary-focus">
+                <div class="secondary-focus-title">SECONDARY FOCUS</div>
+                <div class="nested-item">NEWS</div>
+                <div class="nested-item">EVENTS</div>
+                <div class="nested-item">EVENTS</div>
+                <div class="nested-item">BLOGS</div>
+                <div class="nested-item">VIDEO</div>
+            </div>
+
+            <div class="card-b">
+                <div>CARD B:</div>
+                <div style="font-size: 12px;">SOCIAL FEED</div>
+            </div>
+
+            <div class="card-c">
+                <div>CARD C:</div>
+                <div style="font-size: 11px;">AD SLOT (Explicit)</div>
+            </div>
+
+            <div class="footer">
+                FOOTER
+                <span>GLOBAL FOOTER & LEGAL LINKS</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
