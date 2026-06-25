@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3: Loading Progress Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 50px;
+            font-size: 2.5em;
+        }
+
+        /* Progress bar container */
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        /* Keyframe animation for progress bar */
+        @keyframes progress {
+            0% {
+                /* Progress bar at 0% width */
+                width: 0%;
+            }
+            50% {
+                /* Progress bar at 100% width */
+                width: 100%;
+            }
+            100% {
+                /* Reset to 0% for continuous loop */
+                width: 0%;
+            }
+        }
+
+        /* Progress bar filling */
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 10px;
+            
+            /* Apply animation */
+            animation: progress 2s ease-in-out infinite;
+            
+            box-shadow: 0 0 10px rgba(79, 172, 254, 0.6);
+        }
+
+        /* Alternative progress bar with different animation */
+        .progress-container-2 {
+            width: 100%;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        @keyframes progress-smooth {
+            0% {
+                width: 0%;
+            }
+            90% {
+                width: 90%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        .progress-bar-2 {
+            height: 100%;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 10px;
+            animation: progress-smooth 3s ease-out infinite;
+            box-shadow: 0 0 10px rgba(245, 87, 108, 0.6);
+        }
+
+        p {
+            color: white;
+            font-size: 16px;
+        }
+
+        .label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Loading Progress Bar</h1>
+        
+        <div class="label">Smooth Progress Animation</div>
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div class="label">Alternative Progress Style</div>
+        <div class="progress-container-2">
+            <div class="progress-bar-2"></div>
+        </div>
+
+        <p>Two different loading progress bar animations running continuously.</p>
+    </div>
+</body>
+</html>
