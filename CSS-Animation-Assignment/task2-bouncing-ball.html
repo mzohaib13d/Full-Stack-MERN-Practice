@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2: Bouncing Ball Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Arial', sans-serif;
+            padding-top: 50px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 60px;
+            font-size: 2.5em;
+        }
+
+        /* Keyframe animation for bouncing effect */
+        @keyframes bounce {
+            0% {
+                /* Ball at bottom position */
+                transform: translateY(0);
+            }
+            50% {
+                /* Ball at top position */
+                transform: translateY(-300px);
+            }
+            100% {
+                /* Ball back at bottom */
+                transform: translateY(0);
+            }
+        }
+
+        .ball {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
+            border-radius: 50%;
+            margin: 0 auto 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            
+            /* Apply animation: duration, timing-function, iteration-count */
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        p {
+            color: white;
+            font-size: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bouncing Ball Animation</h1>
+        <div class="ball"></div>
+        <p>The ball continuously bounces up and down using CSS keyframe animations.</p>
+    </div>
+</body>
+</html>
