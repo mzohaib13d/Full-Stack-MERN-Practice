@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1: Animated Button</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        .animated-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #2563eb;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            
+            /* Transition property for smooth animation */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hover state: Change color and scale up */
+        .animated-btn:hover {
+            background-color: #1d4ed8;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Active state: Scale down slightly for feedback */
+        .animated-btn:active {
+            transform: scale(0.98);
+        }
+
+        p {
+            color: white;
+            margin-top: 30px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Animated Button Demo</h1>
+        <button class="animated-btn">Hover Me!</button>
+        <p>Hover over the button to see the smooth color change and scale effect.</p>
+    </div>
+</body>
+</html>
